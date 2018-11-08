@@ -2,10 +2,97 @@
 <html>
 <head>
 	<title>sqlInj</title>
-	<link rel="stylesheet" type="text/css" href="main.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
+	
 	<meta charset="UTF-8"> 
-	<script src='frontEnd.js'></script>
+	
+	<style>
+
+		#tableDiv
+		{
+			padding: 10px;
+
+		}
+
+		#top
+		{
+			border-collapse: collapse;
+			margin-left:auto; 
+			margin-right:auto;
+		}
+
+		.row
+		{
+			padding-left: 5px;
+			padding-right: 5px;
+			padding-top: 2px;
+			padding-bottom: 2px;
+		}
+
+		.headRowCell
+		{
+			padding-left: 5px;
+			padding-right: 5px;
+			padding-top: 2px;
+			padding-bottom: 2px;	
+		}
+
+		.border
+		{
+			padding: 50px;
+			border: thin;
+			border-style: solid;
+			background-image: linear-gradient(to bottom, #787eea, #9e9bef, #bfbaf3, #dedaf7, #fbfbfb);
+			padding-top: 40px;
+			max-width: 500px;
+			margin: auto;
+			text-align: center;
+		}
+	</style>
+	<script>
+
+		window.onload = function() {
+			var btn = document.getElementById("searchButton");
+			btn.onclick = information;
+		}
+
+		function information() {
+	    var term = document.getElementById("search").value; // The id of your input was "begriff", not "name"
+	    var url = 'http://localhost:3000/search?term=' + term;
+	    console.log(url)
+	    // Now send a request to your Node program
+	    fetch(url).then((data) => data.json().then(function(data) {
+
+
+
+	    	var body = document.getElementById('tableDiv'),
+	    	tbl  = document.createElement('table');
+	    	tbl.style.width  = '100px';
+	    	tbl.style.border = '1px solid black';
+
+	    	var tr = tbl.insertRow();
+	    	for(var i = 0; i < data.metaData.length; i++){
+	    		var td = tr.insertCell();
+	    		td.appendChild(document.createTextNode(data.metaData[i].name));   
+	    		td.style.border = '1px solid black';
+	    		td.className = "headRowCell"
+	    	}
+
+	    	for(var i = 0; i < data.rows.length; i++){
+	    		var tr = tbl.insertRow();
+	    		for(var j = 0; j < data.rows[i].length; j++){
+	    			var td = tr.insertCell();
+	    			td.appendChild(document.createTextNode(data.rows[i][j]));
+	    			td.style.border = '1px solid black';
+	    			td.className = "row"
+
+	    		}
+	    	}
+	    	tbl.setAttribute("id", "top");
+	        body.appendChild(tbl);
+	    	}));
+		}
+
+	</script>
 </head>
 <body class="content">
 	<div class="border">
