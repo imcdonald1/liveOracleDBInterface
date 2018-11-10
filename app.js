@@ -4,13 +4,23 @@ const path = require('path')
 var cors = require('cors')
 var oracledb = require('oracledb');
 
+app.set('views', __dirname + '/views');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'ejs');
+
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(cors());
 
 app.get('/', (req, res) => {
-	res.send('Hello World')
+	res.render('index.html');
 });
 
 app.get('/search', (req, res) => {
+	res.render('search.html');
+});
+
+app.get('/search/terms', (req, res) => {
 	var term = req.query.term;
 	oracledb.getConnection(
 	  {
@@ -35,7 +45,7 @@ app.get('/search', (req, res) => {
 	        console.log(result);
 
 	        res.send(result);
-	        
+
 	        doRelease(connection);
 	      });
 	  });
