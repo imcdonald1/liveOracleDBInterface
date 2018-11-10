@@ -1,0 +1,41 @@
+
+#tableDiv
+{
+    padding: 10px;
+    
+}
+
+#top
+{
+	border-collapse: collapse;
+	margin-left:auto; 
+    margin-right:auto;
+}
+
+.row
+{
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+.headRowCell
+{
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;	
+}
+
+.border
+{
+	padding: 50px;
+	border: thin;
+	border-style: solid;
+	background-image: linear-gradient(to bottom, #787eea, #9e9bef, #bfbaf3, #dedaf7, #fbfbfb);
+	padding-top: 40px;
+    max-width: 500px;
+    margin: auto;
+    text-align: center;
+}
