@@ -26,7 +26,7 @@ app.get('/search/terms', (req, res) => {
 	  {
 	    user          : "user101",
 	    password      : "pass101",
-	    connectString : "ec2-52-34-15-188.us-west-2.compute.amazonaws.com:1521/XE"
+	    connectString : "ip/XE"
 	  },
 	  function(err, connection) {
 	    if (err) {
